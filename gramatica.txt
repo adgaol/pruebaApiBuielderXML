@@ -1,0 +1,4 @@
+﻿EXP::= B A ; {print(A.result)}
+A::= + B A1 {A.result=B.result+A1.result;} | λ {A.result=0;}
+B::= num C {B.result=num.vlex*C.result;}
+C::= * num C1 {C.result=num.vlex*C1.result;} | λ {C.result=1;}
