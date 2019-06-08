@@ -147,8 +147,7 @@ Writer writer = new Writer("./gramatica.txt","./ascendent","./cadenaDePrueba.txt
 		
     System.out.println(exp.getValue());
 
-    writer.writeArbol();
-    writer.writeContenido();
+    
     writer.writeXML();
 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("EXP1",0, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -192,7 +191,7 @@ Writer writer = new Writer("./gramatica.txt","./ascendent","./cadenaDePrueba.txt
     Paso paso=writer.addPaso(false,null,"EXP", null, null,relNodo);
     exp.setId(paso.getId());
     b.getPaso().setRegla("EXP::= B A ;");
-    Node nodo=writer.addNode("EXP", false, 0);
+    Node nodo=writer.addNode("EXP", false,null);
     b.getNode().setFahterNode(nodo);
     a.getNode().setFahterNode(nodo);
     pc.getNode().setFahterNode(nodo);
@@ -213,7 +212,7 @@ Writer writer = new Writer("./gramatica.txt","./ascendent","./cadenaDePrueba.txt
     Paso paso=writer.addPaso(true,";",";", null, null);
     puntComa.setId(paso.getId());
     puntComa.setPaso(paso);
-    Node nodo =writer.addNode(";", true, 0);
+    Node nodo =writer.addNode(";", true,null);
     puntComa.setNode(nodo);
     RESULT=puntComa;
 
@@ -245,7 +244,7 @@ Writer writer = new Writer("./gramatica.txt","./ascendent","./cadenaDePrueba.txt
     Paso paso=writer.addPaso(false,null,"A", "A.result="+a.getValue().toString(), null,relNodo);
     a.setPaso(paso);
     a.setId(paso.getId());
-    Node nodo=writer.addNode("A", false, 0);
+    Node nodo=writer.addNode("A", false,null);
     m.getNode().setFahterNode(nodo);
     b.getNode().setFahterNode(nodo);
     a1.getNode().setFahterNode(nodo);
@@ -267,8 +266,8 @@ Writer writer = new Writer("./gramatica.txt","./ascendent","./cadenaDePrueba.txt
     paso=writer.addPaso(false,null,"A1","A1.result="+a.getValue().toString(),null,paso.getId());
     a.setId(paso.getId());
     a.setPaso(paso);
-    Node nodoL=writer.addNode("λ", true, 0);
-    Node nodo=writer.addNode("A1", false, 0);
+    Node nodoL=writer.addNode("λ", true,null);
+    Node nodo=writer.addNode("A1", false,null);
     nodoL.setFahterNode(nodo);
     a.setNode(nodo);
     RESULT=a;
@@ -286,7 +285,7 @@ Writer writer = new Writer("./gramatica.txt","./ascendent","./cadenaDePrueba.txt
     Paso paso=writer.addPaso(true,"+","+", null, null);
     plus.setId(paso.getId());
     plus.setPaso(paso);
-    Node nodo= writer.addNode("+", true, 0);
+    Node nodo= writer.addNode("+", true,null);
     plus.setNode(nodo);
     RESULT =plus;
 
@@ -313,7 +312,7 @@ Writer writer = new Writer("./gramatica.txt","./ascendent","./cadenaDePrueba.txt
     num.getPaso().setRegla("B::= num C");
     Paso paso=writer.addPaso(false,null,"B","B.result=" +b.getValue().toString(), null,relNodo);
     b.setId(paso.getId());
-    Node nodo=writer.addNode("B", false, 0);
+    Node nodo=writer.addNode("B", false,null);
     b.setPaso(paso);
     num.getNode().setFahterNode(nodo);
     c.getNode().setFahterNode(nodo);
@@ -334,10 +333,10 @@ Writer writer = new Writer("./gramatica.txt","./ascendent","./cadenaDePrueba.txt
 		
     Num num=new Num();
     num.setValue(Integer.parseInt(number));
-    Paso paso=writer.addPaso(true,"num","num","num.vlex=" number, null);
+    Paso paso=writer.addPaso(true,"num","num","num.vlex="+ number, null);
     num.setId(paso.getId());
     num.setPaso(paso);
-    Node node=writer.addNode("num", true, 0);
+    Node node=writer.addNode("num", true,null);
     num.setNode(node);
     RESULT=num;
 
@@ -370,7 +369,7 @@ Writer writer = new Writer("./gramatica.txt","./ascendent","./cadenaDePrueba.txt
     c.setPaso(paso);
     p.getPaso().setRegla("C::= * num C1");
     
-    Node nodo=writer.addNode("C1", false, 0);
+    Node nodo=writer.addNode("C1", false,null);
     p.getNode().setFahterNode(nodo);
     num.getNode().setFahterNode(nodo);
     c1.getNode().setFahterNode(nodo);
@@ -392,8 +391,8 @@ Writer writer = new Writer("./gramatica.txt","./ascendent","./cadenaDePrueba.txt
     paso=writer.addPaso(false,null,"C1", "C1.result="+c.getValue().toString(),null, paso.getId());
     c.setId(paso.getId());
     c.setPaso(paso);
-    Node nodeL=writer.addNode("λ", true, 0);
-    Node node=writer.addNode("C", false, 0);
+    Node nodeL=writer.addNode("λ", true,null);
+    Node node=writer.addNode("C", false,null);
     nodeL.setFahterNode(node);
     c.setNode(node);
     RESULT=c;
@@ -411,7 +410,7 @@ Writer writer = new Writer("./gramatica.txt","./ascendent","./cadenaDePrueba.txt
     Paso paso=writer.addPaso(true,"*","*", null, null);
     mult.setId(paso.getId());
     mult.setPaso(paso);
-    Node node=writer.addNode("*", true, 0);
+    Node node=writer.addNode("*", true,null);
     mult.setNode(node);
     RESULT=mult;
 
