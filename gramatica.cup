@@ -39,9 +39,9 @@ EXP ::= B:b A:a PUNTOCOMA:pc{:
     exp.setId(paso.getId());
     b.getPaso().setRegla("EXP::= B A ;");
     Node nodo=writer.addNode("EXP", false,null);
-    b.getNode().setFahterNode(nodo);
-    a.getNode().setFahterNode(nodo);
-    pc.getNode().setFahterNode(nodo);
+    b.getNode().setFatherNode(nodo);
+    a.getNode().setFatherNode(nodo);
+    pc.getNode().setFatherNode(nodo);
     RESULT=exp;
     
 :};
@@ -67,9 +67,9 @@ A ::= MAS:m B:b A:a1{:
     a.setPaso(paso);
     a.setId(paso.getId());
     Node nodo=writer.addNode("A", false,null);
-    m.getNode().setFahterNode(nodo);
-    b.getNode().setFahterNode(nodo);
-    a1.getNode().setFahterNode(nodo);
+    m.getNode().setFatherNode(nodo);
+    b.getNode().setFatherNode(nodo);
+    a1.getNode().setFatherNode(nodo);
     a.setNode(nodo);
     RESULT=a;
 :}
@@ -77,13 +77,13 @@ A ::= MAS:m B:b A:a1{:
 |{:
     A a=new A();
     a.setValue(0);
-    Paso paso=writer.addPaso(true,null,"λ",null,"A::= λ ");
+    Paso paso=writer.addPaso(true,null,"λ",null,"A::= λ");
     paso=writer.addPaso(false,null,"A1","A1.result="+a.getValue().toString(),null,paso.getId());
     a.setId(paso.getId());
     a.setPaso(paso);
     Node nodoL=writer.addNode("λ", true,null);
     Node nodo=writer.addNode("A1", false,null);
-    nodoL.setFahterNode(nodo);
+    nodoL.setFatherNode(nodo);
     a.setNode(nodo);
     RESULT=a;
 :};
@@ -107,8 +107,8 @@ B ::= NUM:num C:c{:
     b.setId(paso.getId());
     Node nodo=writer.addNode("B", false,null);
     b.setPaso(paso);
-    num.getNode().setFahterNode(nodo);
-    c.getNode().setFahterNode(nodo);
+    num.getNode().setFatherNode(nodo);
+    c.getNode().setFatherNode(nodo);
     b.setNode(nodo);
     RESULT=b;
 :};
@@ -135,9 +135,9 @@ C ::= POR:p NUM:num C:c1{:
     p.getPaso().setRegla("C::= * num C1");
     
     Node nodo=writer.addNode("C1", false,null);
-    p.getNode().setFahterNode(nodo);
-    num.getNode().setFahterNode(nodo);
-    c1.getNode().setFahterNode(nodo);
+    p.getNode().setFatherNode(nodo);
+    num.getNode().setFatherNode(nodo);
+    c1.getNode().setFatherNode(nodo);
     c.setNode(nodo);
     RESULT=c;
 :}
@@ -145,13 +145,13 @@ C ::= POR:p NUM:num C:c1{:
 |{:
     C c=new C();
     c.setValue(1);
-    Paso paso=writer.addPaso(true,null,"λ", null,"C::= λ ");
+    Paso paso=writer.addPaso(true,null,"λ", null,"C::= λ");
     paso=writer.addPaso(false,null,"C1", "C1.result="+c.getValue().toString(),null, paso.getId());
     c.setId(paso.getId());
     c.setPaso(paso);
     Node nodeL=writer.addNode("λ", true,null);
     Node node=writer.addNode("C", false,null);
-    nodeL.setFahterNode(node);
+    nodeL.setFatherNode(node);
     c.setNode(node);
     RESULT=c;
 :};

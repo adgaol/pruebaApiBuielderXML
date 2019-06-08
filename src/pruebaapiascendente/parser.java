@@ -264,7 +264,7 @@ Writer writer = new Writer("./gramatica.txt","./ascendent","./cadenaDePrueba.txt
 		
     A a=new A();
     a.setValue(0);
-    Paso paso=writer.addPaso(true,null,"λ",null,"A::= λ ");
+    Paso paso=writer.addPaso(true,null,"λ",null,"A::= λ");
     paso=writer.addPaso(false,null,"A1","A1.result="+a.getValue().toString(),null,paso.getId());
     a.setId(paso.getId());
     a.setPaso(paso);
@@ -389,7 +389,7 @@ Writer writer = new Writer("./gramatica.txt","./ascendent","./cadenaDePrueba.txt
 		
     C c=new C();
     c.setValue(1);
-    Paso paso=writer.addPaso(true,null,"λ", null,"C::= λ ");
+    Paso paso=writer.addPaso(true,null,"λ", null,"C::= λ");
     paso=writer.addPaso(false,null,"C1", "C1.result="+c.getValue().toString(),null, paso.getId());
     c.setId(paso.getId());
     c.setPaso(paso);
