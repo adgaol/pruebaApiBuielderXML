@@ -4,10 +4,6 @@
 //----------------------------------------------------
 
 import java_cup.runtime.*;
-import apicreatorxml.Writer;
-import apicreatorxml.Paso;
-import apicreatorxml.Node;
-import java.util.HashSet;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -33,10 +29,9 @@ public class parser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\014\000\002\002\003\000\002\002\004\000\002\003" +
-    "\005\000\002\011\003\000\002\004\005\000\002\004\002" +
-    "\000\002\007\003\000\002\005\004\000\002\012\003\000" +
-    "\002\006\005\000\002\006\002\000\002\010\003" });
+    "\000\010\000\002\002\003\000\002\002\004\000\002\003" +
+    "\005\000\002\004\005\000\002\004\002\000\002\005\004" +
+    "\000\002\006\005\000\002\006\002" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -44,17 +39,15 @@ public class parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\023\000\004\004\007\001\002\000\010\005\ufff7\006" +
-    "\021\007\ufff7\001\002\000\004\002\020\001\002\000\004" +
-    "\002\001\001\002\000\010\005\ufff9\006\ufff9\007\ufff9\001" +
-    "\002\000\006\005\013\007\ufffc\001\002\000\004\007\016" +
-    "\001\002\000\004\004\007\001\002\000\004\004\ufffb\001" +
-    "\002\000\006\005\013\007\ufffc\001\002\000\004\007\ufffd" +
-    "\001\002\000\004\002\ufffe\001\002\000\004\002\uffff\001" +
-    "\002\000\004\002\000\001\002\000\004\004\ufff6\001\002" +
-    "\000\004\004\007\001\002\000\006\005\ufffa\007\ufffa\001" +
-    "\002\000\010\005\ufff7\006\021\007\ufff7\001\002\000\006" +
-    "\005\ufff8\007\ufff8\001\002" });
+    "\000\017\000\004\004\006\001\002\000\004\002\021\001" +
+    "\002\000\004\002\001\001\002\000\010\005\ufffa\006\015" +
+    "\007\ufffa\001\002\000\006\005\011\007\ufffd\001\002\000" +
+    "\004\007\014\001\002\000\004\004\006\001\002\000\006" +
+    "\005\011\007\ufffd\001\002\000\004\007\ufffe\001\002\000" +
+    "\004\002\uffff\001\002\000\004\004\017\001\002\000\006" +
+    "\005\ufffc\007\ufffc\001\002\000\010\005\ufffa\006\015\007" +
+    "\ufffa\001\002\000\006\005\ufffb\007\ufffb\001\002\000\004" +
+    "\002\000\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -62,15 +55,13 @@ public class parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\023\000\012\002\004\003\005\005\007\012\003\001" +
-    "\001\000\006\006\022\010\021\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\006\004\010\007" +
-    "\011\001\001\000\004\011\016\001\001\000\006\005\013" +
-    "\012\003\001\001\000\002\001\001\000\006\004\014\007" +
-    "\011\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001\000\004\012" +
-    "\023\001\001\000\002\001\001\000\006\006\024\010\021" +
-    "\001\001\000\002\001\001" });
+    "\000\017\000\010\002\003\003\004\005\006\001\001\000" +
+    "\002\001\001\000\002\001\001\000\004\006\015\001\001" +
+    "\000\004\004\007\001\001\000\002\001\001\000\004\005" +
+    "\011\001\001\000\004\004\012\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\004\006\017\001\001\000\002\001\001\000\002\001\001" +
+    "" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -111,11 +102,6 @@ public class parser extends java_cup.runtime.lr_parser {
 /** Cup generated class to encapsulate user supplied action code.*/
 @SuppressWarnings({"rawtypes", "unchecked", "unused"})
 class CUP$parser$actions {
-
-
-Writer writer = new Writer("./gramatica.txt","./ascendent","./cadenaDePrueba.txt",false);
-
-
   private final parser parser;
 
   /** Constructor */
@@ -143,12 +129,10 @@ Writer writer = new Writer("./gramatica.txt","./ascendent","./cadenaDePrueba.txt
               Object RESULT =null;
 		int expleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int expright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		Exp exp = (Exp)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		Integer exp = (Integer)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-    System.out.println(exp.getValue());
-
-    
-    writer.writeXML();
+    System.out.println(exp);    
+    //writer.writeXML();
 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("EXP1",0, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
@@ -169,252 +153,101 @@ Writer writer = new Writer("./gramatica.txt","./ascendent","./cadenaDePrueba.txt
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 2: // EXP ::= B A PUNTOCOMA 
+          case 2: // EXP ::= B A puntoComa 
             {
-              Exp RESULT =null;
+              Integer RESULT =null;
 		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
-		B b = (B)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		Integer b = (Integer)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 		int aleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
-		A a = (A)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
-		int pcleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
-		int pcright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		PuntoComa pc = (PuntoComa)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		Integer a = (Integer)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		
-    Exp exp=new Exp();
-    exp.setValue(b.getValue()+a.getValue());
-    HashSet<Integer> relNodo=new HashSet<>();
-    relNodo.add(b.getId());
-    relNodo.add(a.getId());
-    relNodo.add(pc.getId());
-    Paso paso=writer.addPaso(false,null,"EXP", null, null,relNodo);
-    exp.setId(paso.getId());
-    b.getPaso().setRegla("EXP::= B A ;");
-    Node nodo=writer.addNode("EXP", false,null);
-    b.getNode().setFahterNode(nodo);
-    a.getNode().setFahterNode(nodo);
-    pc.getNode().setFahterNode(nodo);
-    RESULT=exp;
     
+    //writer.addPasoNoTerminal("Exp", "null", b+a, exp, b, a, puntoComa);    
+    RESULT=b+a;
+  
 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 3: // PUNTOCOMA ::= puntoComa 
+          case 3: // A ::= mas B A 
             {
-              PuntoComa RESULT =null;
-		
-    PuntoComa puntComa=new PuntoComa();
-    
-    Paso paso=writer.addPaso(true,";",";", null, null);
-    puntComa.setId(paso.getId());
-    puntComa.setPaso(paso);
-    Node nodo =writer.addNode(";", true,null);
-    puntComa.setNode(nodo);
-    RESULT=puntComa;
-
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("PUNTOCOMA",7, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
-            }
-          return CUP$parser$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 4: // A ::= MAS B A 
-            {
-              A RESULT =null;
-		int mleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
-		int mright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
-		Mas m = (Mas)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+              Integer RESULT =null;
 		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
-		B b = (B)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+		Integer b = (Integer)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		int a1left = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int a1right = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		A a1 = (A)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		Integer a1 = (Integer)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-    A a=new A();
-    a.setValue(b.getValue()+a1.getValue());
-    HashSet<Integer> relNodo=new HashSet<>();
-    relNodo.add(b.getId());
-    relNodo.add(a1.getId());
-    relNodo.add(m.getId());
-    m.getPaso().setRegla("A::= + B A1");
-    Paso paso=writer.addPaso(false,null,"A", "A.result="+a.getValue().toString(), null,relNodo);
-    a.setPaso(paso);
-    a.setId(paso.getId());
-    Node nodo=writer.addNode("A", false,null);
-    m.getNode().setFahterNode(nodo);
-    b.getNode().setFahterNode(nodo);
-    a1.getNode().setFahterNode(nodo);
-    a.setNode(nodo);
-    RESULT=a;
+    //writer.addPasoNoTerminal("A", "result", b+a1, a, mas, b, a1); 
+    RESULT=b+a1;
 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("A",2, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 5: // A ::= 
+          case 4: // A ::= 
             {
-              A RESULT =null;
+              Integer RESULT =null;
 		
-    A a=new A();
-    a.setValue(0);
-    Paso paso=writer.addPaso(true,null,"λ",null,"A::= λ ");
-    paso=writer.addPaso(false,null,"A1","A1.result="+a.getValue().toString(),null,paso.getId());
-    a.setId(paso.getId());
-    a.setPaso(paso);
-    Node nodoL=writer.addNode("λ", true,null);
-    Node nodo=writer.addNode("A1", false,null);
-    nodoL.setFahterNode(nodo);
-    a.setNode(nodo);
-    RESULT=a;
+    
+    //writer.addPasoLambda("A1", "result", 0, a);
+    RESULT=0;
 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("A",2, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // MAS ::= mas 
+          case 5: // B ::= number C 
             {
-              Mas RESULT =null;
-		
-    Mas plus=new Mas();
-    Paso paso=writer.addPaso(true,"+","+", null, null);
-    plus.setId(paso.getId());
-    plus.setPaso(paso);
-    Node nodo= writer.addNode("+", true,null);
-    plus.setNode(nodo);
-    RESULT =plus;
-
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("MAS",5, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
-            }
-          return CUP$parser$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 7: // B ::= NUM C 
-            {
-              B RESULT =null;
+              Integer RESULT =null;
 		int numleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int numright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
-		Num num = (Num)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+		String num = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		int cleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		C c = (C)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		Integer c = (Integer)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-    B b=new B();
-    b.setValue(num.getValue()*c.getValue());
-    HashSet<Integer> relNodo=new HashSet<>();
-    relNodo.add(c.getId());
-    relNodo.add(num.getId());
-    num.getPaso().setRegla("B::= num C");
-    Paso paso=writer.addPaso(false,null,"B","B.result=" +b.getValue().toString(), null,relNodo);
-    b.setId(paso.getId());
-    Node nodo=writer.addNode("B", false,null);
-    b.setPaso(paso);
-    num.getNode().setFahterNode(nodo);
-    c.getNode().setFahterNode(nodo);
-    b.setNode(nodo);
-    RESULT=b;
+    //writer.addPasoNoTerminal("B", "result", num*c, b, num, c); 
+    RESULT=num*c;
 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("B",3, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 8: // NUM ::= constint 
+          case 6: // C ::= por number C 
             {
-              Num RESULT =null;
-		int numberleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
-		int numberright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		String number = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		
-    Num num=new Num();
-    num.setValue(Integer.parseInt(number));
-    Paso paso=writer.addPaso(true,"num","num","num.vlex="+ number, null);
-    num.setId(paso.getId());
-    num.setPaso(paso);
-    Node node=writer.addNode("num", true,null);
-    num.setNode(node);
-    RESULT=num;
-
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("NUM",8, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
-            }
-          return CUP$parser$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // C ::= POR NUM C 
-            {
-              C RESULT =null;
-		int pleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
-		int pright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
-		Por p = (Por)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+              Integer RESULT =null;
 		int numleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int numright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
-		Num num = (Num)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+		String num = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		int c1left = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int c1right = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		C c1 = (C)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		Integer c1 = (Integer)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-    C c=new C();
-    c.setValue(num.getValue()*c1.getValue());
-    HashSet<Integer> relNodo=new HashSet<>();
-    relNodo.add(p.getId());
-    relNodo.add(num.getId());
-    relNodo.add(c1.getId());
-    Paso paso=writer.addPaso(false,null,"C", "C.result="+c.getValue().toString(), null,relNodo);
-    c.setId(paso.getId());
-    c.setPaso(paso);
-    p.getPaso().setRegla("C::= * num C1");
-    
-    Node nodo=writer.addNode("C1", false,null);
-    p.getNode().setFahterNode(nodo);
-    num.getNode().setFahterNode(nodo);
-    c1.getNode().setFahterNode(nodo);
-    c.setNode(nodo);
-    RESULT=c;
+    //writer.addPasoNoTerminal("C", "result",num*c1, c, por, num, c1); 
+    RESULT=num*c1;
 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("C",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // C ::= 
+          case 7: // C ::= 
             {
-              C RESULT =null;
+              Integer RESULT =null;
 		
-    C c=new C();
-    c.setValue(1);
-    Paso paso=writer.addPaso(true,null,"λ", null,"C::= λ ");
-    paso=writer.addPaso(false,null,"C1", "C1.result="+c.getValue().toString(),null, paso.getId());
-    c.setId(paso.getId());
-    c.setPaso(paso);
-    Node nodeL=writer.addNode("λ", true,null);
-    Node node=writer.addNode("C", false,null);
-    nodeL.setFahterNode(node);
-    c.setNode(node);
-    RESULT=c;
+    //writer.addPasoLambda("C1", "result", 1, c);
+    RESULT=1;
 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("C",4, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
-            }
-          return CUP$parser$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 11: // POR ::= por 
-            {
-              Por RESULT =null;
-		
-    Por mult=new Por();
-    Paso paso=writer.addPaso(true,"*","*", null, null);
-    mult.setId(paso.getId());
-    mult.setPaso(paso);
-    Node node=writer.addNode("*", true,null);
-    mult.setNode(node);
-    RESULT=mult;
-
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("POR",6, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 

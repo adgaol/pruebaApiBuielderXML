@@ -1,0 +1,169 @@
+import java_cup.runtime.*;
+import vistdsapixmlcreator.Writer;
+import vistdsapixmlcreator.Paso;
+import vistdsapixmlcreator.Node;
+import java.util.HashSet;
+action code
+{:
+Writer writer = new Writer("./gramatica.txt","./ascendent","./cadenaDePrueba.txt",false);
+
+:}
+
+
+terminal String constint;
+terminal mas, por, puntoComa;
+non terminal EXP1;
+non terminal Exp EXP;
+non terminal A A;
+non terminal B B;
+non terminal C C;
+non terminal Mas MAS;
+non terminal Por POR;
+non terminal PuntoComa PUNTOCOMA;
+non terminal Num NUM;
+
+EXP1 ::= EXP:exp{:
+    System.out.println(exp.getValue());
+
+    
+    writer.writeXML();
+:};
+EXP ::= B:b A:a PUNTOCOMA:pc{:
+    Exp exp=new Exp();
+
+    exp.setValue(b.getValue()+a.getValue());
+    addPasoNoTerminal("Exp", "null", exp, b, a, pc);
+    /*HashSet<Integer> relNodo=new HashSet<>();
+    relNodo.add(b.getId());
+    relNodo.add(a.getId());
+    relNodo.add(pc.getId());
+    Paso paso=writer.addPaso(false,null,"EXP", null, null,relNodo);
+    exp.setId(paso.getId());
+    b.getPaso().setRegla("EXP::= B A ;");
+    Node nodo=writer.addNode("EXP", false,null);
+    b.getNode().setFatherNode(nodo);
+    a.getNode().setFatherNode(nodo);
+    pc.getNode().setFatherNode(nodo);*/
+    RESULT=exp;
+    
+:};
+PUNTOCOMA ::= puntoComa{:
+    PuntoComa puntComa=new PuntoComa();
+    
+    Paso paso=writer.addPaso(true,";",";", null, null);
+    puntComa.setId(paso.getId());
+    puntComa.setPaso(paso);
+    Node nodo =writer.addNode(";", true,null);
+    puntComa.setNode(nodo);
+    RESULT=puntComa;
+:};
+A ::= MAS:m B:b A:a1{:
+    A a=new A();
+    a.setValue(b.getValue()+a1.getValue());
+    HashSet<Integer> relNodo=new HashSet<>();
+    relNodo.add(b.getId());
+    relNodo.add(a1.getId());
+    relNodo.add(m.getId());
+    m.getPaso().setRegla("A::= + B A1");
+    Paso paso=writer.addPaso(false,null,"A", "A.result="+a.getValue().toString(), null,relNodo);
+    a.setPaso(paso);
+    a.setId(paso.getId());
+    Node nodo=writer.addNode("A", false,null);
+    m.getNode().setFatherNode(nodo);
+    b.getNode().setFatherNode(nodo);
+    a1.getNode().setFatherNode(nodo);
+    a.setNode(nodo);
+    RESULT=a;
+:}
+
+|{:
+    A a=new A();
+    a.setValue(0);
+    Paso paso=writer.addPaso(true,null,"λ",null,"A::= λ");
+    paso=writer.addPaso(false,null,"A1","A1.result="+a.getValue().toString(),null,paso.getId());
+    a.setId(paso.getId());
+    a.setPaso(paso);
+    Node nodoL=writer.addNode("λ", true,null);
+    Node nodo=writer.addNode("A1", false,null);
+    nodoL.setFatherNode(nodo);
+    a.setNode(nodo);
+    RESULT=a;
+:};
+MAS ::= mas{:
+    Mas plus=new Mas();
+    Paso paso=writer.addPaso(true,"+","+", null, null);
+    plus.setId(paso.getId());
+    plus.setPaso(paso);
+    Node nodo= writer.addNode("+", true,null);
+    plus.setNode(nodo);
+    RESULT =plus;
+:};
+B ::= NUM:num C:c{:
+    B b=new B();
+    b.setValue(num.getValue()*c.getValue());
+    HashSet<Integer> relNodo=new HashSet<>();
+    relNodo.add(c.getId());
+    relNodo.add(num.getId());
+    num.getPaso().setRegla("B::= num C");
+    Paso paso=writer.addPaso(false,null,"B","B.result=" +b.getValue().toString(), null,relNodo);
+    b.setId(paso.getId());
+    Node nodo=writer.addNode("B", false,null);
+    b.setPaso(paso);
+    num.getNode().setFatherNode(nodo);
+    c.getNode().setFatherNode(nodo);
+    b.setNode(nodo);
+    RESULT=b;
+:};
+NUM ::= constint:number{:
+    Num num=new Num();
+    num.setValue(Integer.parseInt(number));
+    Paso paso=writer.addPaso(true,"num","num","num.vlex="+ number, null);
+    num.setId(paso.getId());
+    num.setPaso(paso);
+    Node node=writer.addNode("num", true,null);
+    num.setNode(node);
+    RESULT=num;
+:};
+C ::= POR:p NUM:num C:c1{:
+    C c=new C();
+    c.setValue(num.getValue()*c1.getValue());
+    HashSet<Integer> relNodo=new HashSet<>();
+    relNodo.add(p.getId());
+    relNodo.add(num.getId());
+    relNodo.add(c1.getId());
+    Paso paso=writer.addPaso(false,null,"C", "C.result="+c.getValue().toString(), null,relNodo);
+    c.setId(paso.getId());
+    c.setPaso(paso);
+    p.getPaso().setRegla("C::= * num C1");
+    
+    Node nodo=writer.addNode("C1", false,null);
+    p.getNode().setFatherNode(nodo);
+    num.getNode().setFatherNode(nodo);
+    c1.getNode().setFatherNode(nodo);
+    c.setNode(nodo);
+    RESULT=c;
+:}
+
+|{:
+    C c=new C();
+    c.setValue(1);
+    Paso paso=writer.addPaso(true,null,"λ", null,"C::= λ");
+    paso=writer.addPaso(false,null,"C1", "C1.result="+c.getValue().toString(),null, paso.getId());
+    c.setId(paso.getId());
+    c.setPaso(paso);
+    Node nodeL=writer.addNode("λ", true,null);
+    Node node=writer.addNode("C", false,null);
+    nodeL.setFatherNode(node);
+    c.setNode(node);
+    RESULT=c;
+:};
+
+POR ::= por{:
+    Por mult=new Por();
+    Paso paso=writer.addPaso(true,"*","*", null, null);
+    mult.setId(paso.getId());
+    mult.setPaso(paso);
+    Node node=writer.addNode("*", true,null);
+    mult.setNode(node);
+    RESULT=mult;
+:};

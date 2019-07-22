@@ -1,33 +1,28 @@
+package pruebaapiascendente;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pruebaapiascendente;
-
-import apicreatorxml.Node;
-import apicreatorxml.Paso;
+import vistdsapixmlcreator.Node;
+import vistdsapixmlcreator.Paso;
 
 /**
  *
- * @author adgao
+ * @author Adrian Garcia Oller
  */
 public class C {
-    private Integer value;
+
+    private String value;
     private Integer id;
-    private Integer nivel;
+    
     private Paso paso;
     private Node node;
     public C() {
     }
 
-    public Integer getValue() {
-        return value;
-    }
-
-    public void setValue(Integer value) {
-        this.value = value;
-    }
+    
 
     public Integer getId() {
         return id;
@@ -37,13 +32,7 @@ public class C {
         this.id = id;
     }
 
-    public Integer getNivel() {
-        return nivel;
-    }
-
-    public void setNivel(Integer nivel) {
-        this.nivel = nivel;
-    }
+    
 
     public Paso getPaso() {
         return paso;
@@ -59,6 +48,14 @@ public class C {
 
     public void setNode(Node node) {
         this.node = node;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
     
 }

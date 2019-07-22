@@ -11,13 +11,13 @@ public class sym {
   public static final int por = 4;
   public static final int error = 1;
   public static final int mas = 3;
-  public static final int constint = 2;
+  public static final int number = 2;
   public static final int puntoComa = 5;
   public static final int EOF = 0;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
-  "constint",
+  "number",
   "mas",
   "por",
   "puntoComa"
