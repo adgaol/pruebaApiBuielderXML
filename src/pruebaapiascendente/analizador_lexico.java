@@ -557,7 +557,7 @@ class analizador_lexico implements java_cup.runtime.Scanner {
             }
           case 6: break;
           case 2: 
-            { return new java_cup.runtime.Symbol(sym.number,yytext());
+            { return new java_cup.runtime.Symbol(sym.num,yytext());
 /*System.out.println("<constint,"+yytext()+">");*/
             }
           case 7: break;
